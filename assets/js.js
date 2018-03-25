@@ -19,11 +19,6 @@ $(document).ready(function(){
         var firstTrain = moment($("#first-train-input").val().trim(), "HH:mm").subtract(10, "years").format("X");
         var frequency = $("#frequency-input").val().trim();
 
-        console.log(trainName);
-        console.log(destinationName);
-        console.log(firstTrain);
-        console.log(frequency);
-
         var newTrain = {
             name: trainName,
             destination: destinationName,
@@ -43,13 +38,17 @@ $(document).ready(function(){
         console.log(childSnapshot.val());
 
         var tName = childSnapshot.val().name;
-        var tDestination = childSnaphsot.val().destination;
+        var tDestination = childSnapshot.val().destination;
         var tFTrain = childSnapshot.val().trainTime;
         var tFrequency = childSnapshot.val().frequency;
 
-        console.log(tName);
-        console.log(tDestination);
-        console.log(tFTrain);
-        console.log(tFrequency);
+        var timeFirstTrainStandard = moment.unix(tFTrain).format("HH:mm");
+        var difference = moment().diff(moment.unix(tFTrain), "minutes");
+        var remainder = moment().diff(moment.unix(tFrequency), "minutes") % tFrequency;
+        var timeLeft = tFrequency - remainder;
+
+        var arrival = moment().add(timeLeft, "m").format("HH:mm");
+
+        $("#train-table > tbody").append("<tr><td>" + tName + "</td><td>" + tDestination + "</td><td>" + timeFirstTrainStandard + "</td><td>" + tFrequency + "<td><td>" + arrival + "</td><td>");
     })
 })
