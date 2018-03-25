@@ -49,6 +49,6 @@ $(document).ready(function(){
 
         var arrival = moment().add(timeLeft, "m").format("HH:mm");
 
-        $("#train-table > tbody").append("<tr><td>" + tName + "</td><td>" + tDestination + "</td><td>" + timeFirstTrainStandard + "</td><td>" + tFrequency + "<td><td>" + arrival + "</td><td>");
+        $("#train-table > tbody").append("<tr><td>" + tName + "</td><td>" + tDestination + "</td><td>" + tFrequency + "</td><td>" + arrival + "<td><td>" + timeLeft + "</td><td>");
     })
 })
